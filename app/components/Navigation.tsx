@@ -21,28 +21,44 @@ export default function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <Link
+              href="/"
+              onClick={(e) => {
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth", // Добавляет плавную анимацию скролла вверх
+                  });
+                }
+              }}
+              className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
+            >
+              Home
+            </Link>
+            <Link
               href="/terms"
               className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
             >
               Terms
             </Link>
-            {/* <a
-              href="#pricing"
+            <a
+              href="#howItWorks"
               className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
             >
-              Pricing
-            </a> */}
+              How it works
+            </a>
             <a
               href="#features"
               className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
             >
               Features
             </a>
+
             <a
-              href="#howItWorks"
+              href="#contact"
               className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
             >
-              How it works
+              Contact Us
             </a>
           </div>
 
@@ -83,6 +99,22 @@ export default function Navigation() {
         >
           <div className="flex flex-col space-y-4 pb-4">
             <Link
+              href="/"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium py-2"
+              onClick={(e) => {
+                setIsMenuOpen(false);
+                if (window.location.pathname === "/") {
+                  e.preventDefault();
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+            >
+              Home
+            </Link>
+            <Link
               href="/terms"
               className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium py-2"
               onClick={() => setIsMenuOpen(false)}
@@ -90,11 +122,10 @@ export default function Navigation() {
               Terms
             </Link>
             <a
-              href="#pricing"
-              className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium py-2"
-              onClick={() => setIsMenuOpen(false)}
+              href="#howItWorks"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
             >
-              Pricing
+              How it works
             </a>
             <a
               href="#features"
@@ -104,11 +135,10 @@ export default function Navigation() {
               Features
             </a>
             <a
-              href="#"
-              className="px-6 py-2 rounded-full bg-gray-900 hover:bg-gray-800 text-white font-medium transition-all text-sm text-center"
-              onClick={() => setIsMenuOpen(false)}
+              href="#contact"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
             >
-              Sign In
+              Contact Us
             </a>
           </div>
         </div>
