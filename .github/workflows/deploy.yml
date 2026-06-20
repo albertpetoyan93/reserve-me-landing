@@ -3,7 +3,7 @@ name: Deploy Next.js to Private Server
 on:
   push:
     branches:
-      - main  # Runs whenever you push code to the main branch
+      - main # Runs whenever you push code to the main branch
 
 jobs:
   build-and-deploy:
@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install Dependencies
         run: npm ci
@@ -25,20 +25,18 @@ jobs:
       - name: Build Next.js Production App
         run: npm run build
         env:
-          # If your app needs API keys during the build process, add them here:
-          NEXT_PUBLIC_API_URL: "https://reserveme.com/api" 
+          NEXT_PUBLIC_API_URL: "https://reserveme.me"
 
       - name: Deploy Production Files via SFTP
         uses: easingthemes/ssh-deploy@v5.1.0
         with:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rlgoDzlk --delete" # Rsync flags to cleanly sync and delete old files
+          SSH_PRIVATE_KEY: ${{ secrets.VPS_SSH_KEY }}
+          ARGS: "-rlgoDzlk --delete"
           REMOTE_HOST: ${{ secrets.VPS_HOST }}
           REMOTE_USER: ${{ secrets.VPS_USER }}
           PORT: ${{ secrets.VPS_PORT || 22 }}
-          # Exclude source code files you don't need running on production
-          EXCLUDE: "/node_modules/, /src/, /.git/, /README.md", /.github/"
-          TARGET: "/var/www/reserve-me-landing" # The absolute path to your folder on your server
+          EXCLUDE: "/node_modules/, /src/, /.git/, /README.md, /.github/"
+          TARGET: "/var/www/reserve-me-landing"
 
       - name: Restart Server Process via SSH
         uses: appleboy/ssh-action@v1.0.3
@@ -49,8 +47,5 @@ jobs:
           port: ${{ secrets.VPS_PORT || 22 }}
           script: |
             cd /var/www/reserve-me-landing
-            # Install production-only dependencies directly on the server
             npm install --production
-            
-            # Restart the app using PM2 so it runs seamlessly in the background
-            pm2 restart reserve-me-landing || pm2 start npm --name "reserve-me-landing" -- start
+            pm2 restart reserve-me-landing || pm2 start npm --name "reserve-me-landing" -- start -- --port 3000
