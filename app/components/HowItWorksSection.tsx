@@ -2,12 +2,10 @@
 
 export default function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="py-24 bg-gray-50">
+    <section id="howItWorks" className="py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-heading font-bold text-gray-900">
-            How It Works
-          </h2>
+          <h2 className="text-heading font-bold text-gray-900">How It Works</h2>
           <p className="text-body text-gray-600 max-w-2xl mx-auto">
             Get started in just 3 simple steps
           </p>
@@ -48,8 +46,7 @@ export default function HowItWorksSection() {
                 Customize Your Settings
               </h3>
               <p className="text-body text-gray-600 text-center">
-                Set up your business hours, services, pricing, and team
-                members.
+                Set up your business hours, services, pricing, and team members.
               </p>
             </div>
             <div className="hidden md:block absolute top-1/2 -right-4 transform translate-x-1/2 -translate-y-1/2 z-10">

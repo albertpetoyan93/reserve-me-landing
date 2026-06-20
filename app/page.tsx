@@ -5,6 +5,7 @@ import HowItWorksSection from "./components/HowItWorksSection";
 import FeaturesSection from "./components/FeaturesSection";
 import CTATextian from "./components/CTATextian";
 import Footer from "./components/Footer";
+import FeaturesSection2 from "./components/FeaturesSection2";
 
 export const metadata: Metadata = {
   title: "ReserveMe - Smart Reservation Management",
@@ -27,6 +28,7 @@ export default function Home() {
       <HeroSection />
       <HowItWorksSection />
       <FeaturesSection />
+      <FeaturesSection2 />
       <CTATextian />
       <Footer />
     </div>

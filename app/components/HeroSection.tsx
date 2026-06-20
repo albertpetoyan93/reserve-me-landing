@@ -2,7 +2,7 @@
 
 export default function HeroSection() {
   return (
-    <section className="relative py-24 lg:py-8 bg-white overflow-hidden">
+    <section className="relative py-8 lg:py-8 bg-white overflow-hidden">
       {/* Soft Blue Cloud/Gradient Background effect behind phones */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-blue-100/40 blur-[120px] rounded-full pointer-events-none z-0" />
 

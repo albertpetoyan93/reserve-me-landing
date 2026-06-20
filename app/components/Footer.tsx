@@ -7,11 +7,19 @@ export default function Footer() {
     <footer className="border-t border-gray-200 py-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="text-xl font-bold text-gray-900">
-            Reserve<span className="text-gray-700">Me</span>
-          </div>
-          
-          <div className="flex gap-8 text-sm text-gray-600">
+            {/* Logo */}
+            <Link href="/" className="flex items-center group">
+              <img
+                src="/logos/logo_192.png"
+                alt="ReserveMe Logo"
+                className="w-8 h-8 object-contain group-hover:scale-105 transition-transform mr-3"
+              />
+              <div className="text-xl font-bold text-gray-900">
+                Reserve<span className="text-gray-700">Me</span>
+              </div>
+            </Link>
+
+            <div className="flex gap-8 text-sm text-gray-600">
             <Link href="/terms" className="hover:text-gray-900 transition-colors">
               Terms & Conditions
             </Link>
