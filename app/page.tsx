@@ -3,21 +3,22 @@ import Navigation from "./components/Navigation";
 import HeroSection from "./components/HeroSection";
 import HowItWorksSection from "./components/HowItWorksSection";
 import FeaturesSection from "./components/FeaturesSection";
-import CTATextian from "./components/CTATextian";
-import Footer from "./components/Footer";
 import FeaturesSection2 from "./components/FeaturesSection2";
+import CTATextian from "./components/CTATextian";
+import PremiumAppSelection from "./components/PremiumAppSelection";
 import ContactSection from "./components/ContactUsSection";
+import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
   title: "ReserveMe - Smart Reservation Management",
   description:
-    "Streamline your business reservations with ReserveMe. Modern, minimalist reservation management platform for restaurants, salons, clinics, and more.",
+    "Choose your world with ReserveMe. Select either the Restaurant App for managing your business, or the Client App for discovering and booking amazing dining experiences.",
   keywords:
-    "reservation system, booking management, appointment scheduling, table booking",
+    "reservation system, booking management, restaurant management, customer app, dining experience",
   openGraph: {
     title: "ReserveMe - Smart Reservation Management",
     description:
-      "Modern minimalist reservation management platform for your business",
+      "Choose your world - Restaurant App for management, Client App for discovery",
     type: "website",
   },
 };
@@ -28,6 +29,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <HowItWorksSection />
+      <PremiumAppSelection />
       <FeaturesSection />
       <FeaturesSection2 />
       <CTATextian />

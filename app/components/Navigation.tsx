@@ -48,6 +48,12 @@ export default function Navigation() {
               How it works
             </a>
             <a
+              href="#application-selection"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
+            >
+              Apps
+            </a>
+            <a
               href="#features"
               className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
             >
@@ -126,6 +132,13 @@ export default function Navigation() {
               className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium"
             >
               How it works
+            </a>
+            <a
+              href="#application-selection"
+              className="text-gray-600 hover:text-gray-900 transition-colors text-sm font-medium py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Apps
             </a>
             <a
               href="#features"

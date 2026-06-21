@@ -26,6 +26,7 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_API_URL: "https://reserveme.me"
+          BACKEND_API_URL: "https://reserveme.me"
 
       - name: Deploy Production Files via SFTP
         uses: easingthemes/ssh-deploy@v5.1.0
@@ -34,7 +35,7 @@ jobs:
           ARGS: "-rlgoDzlk --delete"
           REMOTE_HOST: ${{ secrets.VPS_HOST }}
           REMOTE_USER: ${{ secrets.VPS_USER }}
-          PORT: ${{ secrets.VPS_PORT || 22 }}
+          REMOTE_PORT: ${{ secrets.VPS_PORT || 22 }}
           EXCLUDE: "/node_modules/, /src/, /.git/, /README.md, /.github/"
           TARGET: "/var/www/reserve-me-landing"
 

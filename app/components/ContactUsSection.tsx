@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { getContactApiUrl } from "../lib/api";
 
 interface FormData {
   name: string;
@@ -20,37 +21,43 @@ export default function ContactSection() {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error' | null>(null);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error" | null
+  >(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // Validate form
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setSubmitStatus('error');
-      setErrorMessage('Please fill in all fields');
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
+      setSubmitStatus("error");
+      setErrorMessage("Please fill in all fields");
       return;
     }
 
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      setSubmitStatus('error');
-      setErrorMessage('Please enter a valid email address');
+      setSubmitStatus("error");
+      setErrorMessage("Please enter a valid email address");
       return;
     }
 
     setIsSubmitting(true);
-    setSubmitStatus('idle');
-    setErrorMessage('');
+    setSubmitStatus("idle");
+    setErrorMessage("");
 
     try {
       // Send form data to backend API
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch(getContactApiUrl(), {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -58,16 +65,21 @@ export default function ContactSection() {
       const result: SubmitResponse = await response.json();
 
       if (response.ok && result.success) {
-        setSubmitStatus('success');
+        setSubmitStatus("success");
         // Reset form after successful submission
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: "", email: "", message: "" });
       } else {
-        setSubmitStatus('error');
-        setErrorMessage(result.message || 'Failed to send message. Please try again.');
+        setSubmitStatus("error");
+        setErrorMessage(
+          result.message || "Failed to send message. Please try again.",
+        );
       }
-    } catch (error) {
-      setSubmitStatus('error');
-      setErrorMessage('Network error. Please check your connection and try again.');
+    } catch (error: unknown) {
+      console.error(error);
+      setSubmitStatus("error");
+      setErrorMessage(
+        "Network error. Please check your connection and try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -87,7 +99,7 @@ export default function ContactSection() {
                 Get in Touch
               </span>
               <h2 className="text-4xl lg:text-5xl font-black text-gray-900 tracking-tight">
-                Let's get your tables packed.
+                Let&apos;s get your tables packed.
               </h2>
               <p className="text-gray-600 text-base leading-relaxed max-w-md">
                 Have questions about setting up your restaurant dashboard or
@@ -107,10 +119,10 @@ export default function ContactSection() {
                     Email Us
                   </p>
                   <a
-                    href="mailto:support@reserveme.me"
+                    href="mailto:reserve.me.partnership@gmail.com"
                     className="text-sm font-bold text-gray-900 hover:underline"
                   >
-                    support@reserveme.me
+                    reserve.me.partnership@gmail.com
                   </a>
                 </div>
               </div>
@@ -195,15 +207,16 @@ export default function ContactSection() {
               </div>
 
               {/* Status Messages */}
-              {submitStatus === 'success' && (
+              {submitStatus === "success" && (
                 <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
                   <p className="text-sm text-green-800 font-medium">
-                    ✓ Message sent successfully! We'll get back to you soon.
+                    ✓ Message sent successfully! We&apos;ll get back to you
+                    soon.
                   </p>
                 </div>
               )}
 
-              {submitStatus === 'error' && (
+              {submitStatus === "error" && (
                 <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
                   <p className="text-sm text-red-800 font-medium">
                     ✗ {errorMessage}
@@ -222,7 +235,7 @@ export default function ContactSection() {
                     Sending...
                   </span>
                 ) : (
-                  'Send Message'
+                  "Send Message"
                 )}
               </button>
             </form>
